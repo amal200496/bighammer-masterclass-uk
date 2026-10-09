@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You're registered | BigHammer.ai UK Masterclass</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#5600EF">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%235600EF'/%3E%3Crect x='7' y='7' width='18' height='6' fill='%2300FF89'/%3E%3Crect x='13' y='13' width='6' height='13' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple:#5600EF; --green:#00FF89; --yellow:#FCFF00; --pink:#FE0079; --lime:#B7FF6E;
+  --white:#FFFFFF; --ink-900:#0D0D14; --ink-700:#141414; --ink-600:#1C1C1C;
+  --grey-600:#5E5E66; --border-light:#E6E6EE; --field-bg:#F2F4FA; --field-bg-2:#E9ECF6;
+  --w-90:rgba(255,255,255,.90); --w-75:rgba(255,255,255,.75); --w-20:rgba(255,255,255,.20); --w-12:rgba(255,255,255,.12);
+  --font-display:'Epilogue',sans-serif; --font-body:'Poppins',sans-serif;
+  --gutter:clamp(16px,5vw,80px);
+}
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0; padding:0}
+[hidden]{display:none !important}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--white); color:var(--ink-600); font-family:var(--font-body); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased}
+img{display:block; max-width:100%}
+a{color:inherit}
+.container{max-width:1080px; margin-inline:auto; padding-inline:var(--gutter)}
+.sr-only{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:48px; padding:15px 24px; font-family:var(--font-body); font-weight:600; font-size:15px; line-height:1.1; text-transform:uppercase; letter-spacing:.03em; text-decoration:none; border:0; cursor:pointer; transition:transform .15s ease, box-shadow .15s ease}
+.btn-primary{background:var(--yellow); color:var(--ink-900)}
+.btn-primary:hover{transform:translate(-3px,-3px); box-shadow:5px 5px 0 0 var(--ink-900)}
+.btn-dark{background:var(--ink-900); color:var(--white)}
+.btn-dark:hover{transform:translate(-3px,-3px); box-shadow:5px 5px 0 0 var(--purple)}
+.btn-wa{background:#25D366; color:var(--ink-900)}
+.btn-wa:hover{transform:translate(-3px,-3px); box-shadow:5px 5px 0 0 var(--ink-900)}
+.btn:focus-visible{outline:3px solid var(--ink-900); outline-offset:3px}
+.btn svg{width:18px; height:18px; flex:none}
+.btn-cal{display:inline-flex; align-items:center; min-height:44px; padding:10px 14px; background:var(--field-bg); color:var(--ink-700); font-weight:600; font-size:14px; text-decoration:none}
+.btn-cal:hover{background:var(--field-bg-2)}
+
+.site-header{position:sticky; top:0; z-index:50; background:var(--ink-900); border-bottom:1px solid var(--w-12)}
+.header-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:68px}
+.logo{height:40px; width:auto}
+.event-chip{font-size:13px; color:var(--w-90); text-align:right}
+.event-chip strong{color:var(--green); font-weight:600}
+
+.preview-bar{background:var(--yellow); color:var(--ink-900); font-size:13px; font-weight:600; text-align:center; padding:8px 16px}
+
+.ty-hero{position:relative; background:var(--purple); color:var(--white); padding:clamp(48px,7vw,88px) 0 clamp(56px,7vw,96px); overflow:hidden}
+.ty-hero::before{content:""; position:absolute; inset:0; background-image:linear-gradient(var(--w-12) 1px,transparent 1px),linear-gradient(90deg,var(--w-12) 1px,transparent 1px); background-size:56px 56px; opacity:.55; pointer-events:none}
+.ty-hero .container{position:relative}
+.tick{display:inline-flex; align-items:center; justify-content:center; width:60px; height:60px; background:var(--lime); color:var(--ink-900); margin-bottom:22px}
+.tick svg{width:30px; height:30px}
+.ty-hero h1{font-family:var(--font-display); font-weight:800; font-size:clamp(42px,6vw,76px); line-height:1; letter-spacing:-.035em; margin-bottom:18px}
+.ty-hero .lead{font-size:clamp(17px,1.6vw,19px); line-height:1.5; color:var(--w-90); max-width:36em}
+.ty-hero .lead b{color:var(--white); font-weight:600}
+.when{margin-top:26px; display:flex; flex-wrap:wrap; gap:10px 28px; align-items:baseline}
+.when-date{font-family:var(--font-display); font-weight:700; font-size:clamp(20px,2.2vw,26px); letter-spacing:-.01em; line-height:1.2}
+.nw{white-space:nowrap}
+.when-local{font-size:15px; font-weight:600; color:var(--green)}
+.hero-meta{margin-top:26px; display:flex; flex-wrap:wrap; gap:10px}
+.pill{display:inline-flex; align-items:center; gap:8px; padding:9px 14px; background:var(--ink-900); color:var(--white); font-size:14px; line-height:1.3; max-width:100%}
+.pill svg{width:16px; height:16px; flex:none; color:var(--green)}
+.pill b{font-weight:600; overflow-wrap:anywhere}
+
+.steps{background:var(--field-bg); padding:clamp(48px,6vw,80px) 0}
+.steps h2{font-family:var(--font-display); font-weight:700; font-size:clamp(30px,4vw,46px); line-height:1.08; letter-spacing:-.025em; color:var(--ink-700); margin-bottom:8px}
+.steps .sub{color:var(--grey-600); margin-bottom:clamp(24px,3vw,36px)}
+.step-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px}
+.step{position:relative; display:flex; flex-direction:column; background:var(--white); padding:clamp(24px,2.6vw,34px); border:1px solid var(--border-light)}
+.step-n{display:flex; align-items:center; gap:12px; margin-bottom:16px}
+.step-n b{display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; background:var(--ink-900); color:var(--lime); font-family:var(--font-display); font-weight:800; font-size:17px}
+.step-n span{font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--purple)}
+.step h3{font-family:var(--font-display); font-weight:700; font-size:clamp(21px,2vw,25px); line-height:1.2; letter-spacing:-.015em; color:var(--ink-700); margin-bottom:8px}
+.step p{font-size:15px; line-height:1.55; color:var(--ink-600)}
+.step .actions{margin-top:auto; padding-top:20px; display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+.step .note{margin-top:14px; padding:12px 14px; background:var(--field-bg); font-size:14px}
+.step.key{border:2px solid var(--ink-900); box-shadow:8px 8px 0 var(--purple)}
+.step.demo{background:var(--ink-900); border-color:var(--ink-900); color:var(--white)}
+.step.demo h3{color:var(--white)}
+.step.demo p{color:var(--w-90)}
+.step.demo .step-n b{background:var(--lime); color:var(--ink-900)}
+.step.demo .step-n span{color:var(--green)}
+.step.demo .btn-primary:hover{box-shadow:5px 5px 0 0 var(--green)}
+.cal-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+.cal-row .lbl{flex-basis:100%; font-size:12.5px; font-weight:600; color:var(--grey-600); letter-spacing:.04em; text-transform:uppercase}
+
+.see-you{background:var(--ink-900); color:var(--white); padding:clamp(44px,6vw,72px) 0; text-align:center}
+.see-you h2{font-family:var(--font-display); font-weight:800; font-size:clamp(30px,4vw,48px); line-height:1.05; letter-spacing:-.03em; margin-bottom:12px}
+.see-you h2 span{color:var(--green)}
+.see-you p{color:var(--w-75); max-width:34em; margin-inline:auto}
+.see-you .back{display:inline-block; margin-top:22px; font-size:14px; font-weight:600; color:var(--white); text-underline-offset:4px}
+.color-bar{display:grid; grid-template-columns:repeat(4,1fr); height:8px}
+
+@media (max-width:760px){
+  .step-grid{grid-template-columns:1fr}
+  .event-chip{display:none}
+  .logo{height:36px}
+  .step .actions .btn{width:100%}
+  .when-date .nw{display:block}
+  .when-date .dot{display:none}
+}
+@media (prefers-reduced-motion:no-preference){
+  .tick svg polyline{stroke-dasharray:1; stroke-dashoffset:1; animation:draw .45s ease-out .2s forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .step{animation:up .6s cubic-bezier(.16,1,.3,1) both}
+  .step:nth-child(2){animation-delay:.07s} .step:nth-child(3){animation-delay:.14s} .step:nth-child(4){animation-delay:.21s}
+  @keyframes up{from{opacity:0; transform:translateY(16px)}}
+}
+.consent-bar{position:fixed; left:0; right:0; bottom:0; z-index:90; background:var(--ink-900); color:var(--w-90); padding:14px 16px calc(14px + env(safe-area-inset-bottom)); display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center; justify-content:center; font-size:14px; line-height:1.45}
+.consent-bar[hidden]{display:none}
+.consent-bar p{margin:0}
+.consent-bar a{color:var(--white)}
+.consent-bar .cb{min-height:44px; padding:10px 18px; font:600 14px/1 Poppins, sans-serif; cursor:pointer; border:2px solid var(--white); background:transparent; color:var(--white)}
+.consent-bar .cb-ok{background:var(--yellow); border-color:var(--yellow); color:var(--ink-900)}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" aria-label="BigHammer.ai masterclass page"><img class="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOMAAAA0CAYAAAB4tY/bAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAABIuSURBVHhe7Zx5VBRX9se/7EagBWRRaBVQDIuCgIhsCYk6kRZBTIxR0RidaAwm0ShRYpwhZ9QfOYPHjMuMCyiCAhIXzI9hoiKorBKVBlRAo8gSVtHQuAACb/5o+tFV3SyyNZypzznvnKp773tVXVX3vVvv3WolbW19Ag4ODoWjzBZwcHAoBs4ZOTiGCJwzcnAMEThn5OAYInDOyMExROCckYNjiMA5IwfHEEGpN+uMhoYGCAnZCYHgPYwcOZKtHlRSU9MRFPQd8vJus1UcHMOKXjnjuXNxmDXrHbZYYYhEIlhYTMHLly/ZKg6OYUOvwlQ3N1e2SKHweDxMnmzBFnNwDCt65YwjRmiwRQpHW1uLLeLgGFb0yhn7SlZWFjw9PWk5deoU24SD438OhThjdXU1Y7+yspKxz8Hxv0ivJnBEolq2iAEhBJs2bcKtW7fYqtdGX18fERER0NLqOgwVCHyRlpbBFnNwDBsGxBnXrl2Lw4cPg8fj4euvv2bo0tPTcenSJYYMAOzs7ODt7Q01NTUqO3v2LPLy8uDg4IC0tDS88cYbjDrScM7IMdwZEGccP348ysrKoKGhARcXFypXVVXFu+++C1VVVezYsQMikQhqampYv349VFRUcOPGDUY7BQUFNKQtLi6GqakpQy/NYDijqekEvHr1Cr//XsFWcXAA7TP7pqbje7XuPaDvjKNGjUJwcDAt69evx9OnTxEaGoqNGzfC0tIS27ZtQ1JSEiorK+Hn58eY2Bk9ejS7yT4xZYo1RKLaTsuTJ5XYsSMYPB6PXRVLl36EGzcycP16KubPn8dW95qDB/chMfE8EhPPs1UMvvjic2pnZWXJVnMMAczMTJGVdQ1paSkICdnBVnfLgDpjc3MzTpw4QUtCQgKEQiFiY2OhoqICJSUlAMDevXtRVFSE/Px8lJeX06KqqspuckBRVVXFl18GQCjMhrs7cy11wYL5UFdXB4/Hg7e3F0PXFxwdHeDu7ipzPDaTJ1tQOx5Pm63mGAJ4eLiBzzcBACxZ8iFb3S0D6owAkJqaSktaWhrs7e1x8uRJBAcHo6CgAMHBwdi9ezcWL16MxsZGZGZmUvumpiZ2c32CkI6IvLb2MdLSMmjJyMhCY6P4ePr6oxEdfRyjR+tR+19+uUi3k5Ov0u3BQtJxcQxd0tMz8ezZMwDA2bNdRzryGFBnJIRgyZIltHz00UfIzs6GpqYmjh8/DgsLC4SHh8PNzQ2RkZGYNGkSFi1aRO1VVFTYTfYbV65chUDgS8vcufNhaWmLy5dTAAA6OjpYtepjan/06HGMGTMBRkbjcerUT1ItcXCIefDgIYyNzWBhYYONGwPZ6m4ZEGfsbNZTXV0de/bsQUNDA5YvX4779+9j9erVSE5OxokTJ6Cpqcmwf/XqFd3W0Bj4rJ8nT55g06YtdN/Gxoahf/HiRbf5r5MnW8DDww02Nlb9Opr1tC0zM1N4eLjBw8MNEyeas9XdoqGhTutPmjSRoVNWVsbMmTPg4eEGZ2enHr9GjBihQds0Nzdj6JSVleHi4gwPDzfMmOHUow5YU1OTnoc4NOSzTbpETU0NdnZT2WK5WFq+SY8zbtw4tlou1dU1bFHP0NbWJ69buiMnJ4fo6uoSAH0uSkpKJCYmhn0IGby8fGTOk11mzvSg9nFxp2X02tr6xNPzT9QmJuYUlfv7r6Tyjz9eLVPPy8uHXL2aSm0IIaShoYGcPBlDjI3NSFZWNiGEkLKyMka9wsIias9uU7pERUVTu9mzvWT0b701m/zyy0VqI+H06XOEz59ILly4RAghRCQSMerV19cTQghJSkom77//ESktLaV129raSEREFDE0HEemTHEgubn5VEfaf8vChYtlzqWxsYkQQkhCQiJZvNiflJWV0zptbW0kLOwYMTTkE1vb6SQ//45Ui4SUlpYSH5/3ZdrU1tYnY8eakpiYU+TVq1eMOm1tbeTMmXji5OQmU+fw4XBqZ2FhQ6KiosnLl42ktLRUxla6CAS+JD09k3Gc1tZWcuhQGDEwMKHnXVBQyDg/CZGRJ2Xa7K4MyNIGAJSUlKC4uJgtBtpHoMbGRobM2NiYsS9BT08Ptra2bLEMPVnasLGxQmbmNQDATz+dwerVnzH0urq6iIs7CWdnJwDAmjUBiI2NAwD4+nojKuoYAGDlyj8z3gnWrFmN0NAQus+msLAIKioqsLCYhPLyclhb21Pdr7+m4803JwMAeDwDqVpM/vnPvfD3XwIAmDNHgOvXf6W6Dz7ww5Ej/+p0VHn4sBjPnj2Hre0UNDQ0wMSkY8QsL38AHo+H6uoaGBoayB2BT58+C0/Pt6GvL392e+HCxUhKSqb7tbW/Q0NDHZWVVRgzxkhum3FxpzFnzizo6uqyVQAAH5/3ceWK+F6hfcROTDwPJ6fpDDtpmpub4e//CeP9PjQ0BGvWrAYAnD+fAF9fbwBAWVkZbGwcqJ00a9f+GX//+/+xxZTc3Hzo6upg/PhxKCwswowZ7gAALS0tVFSIn/moqGgEBHzFqtkNbO/sSekr586dY4x++/btY5u8Nq87MtbU1JLU1HRaJCOXhISERMLjGdC6nY2Mc+fOJ21tbVR37tzPJCDgK7Jw4WKybdtfSVlZGdUROSNjQUEh1UmfD7tUVVVTu1mzOkZGR0cXOhIRQkhsbBz58MNlRCDwJatXf0YyM69THSGE1NfXM44vGRkJIeTx4zoSGBhEBAJfcuDAQcbvIoSQ6OhYIhD4EoHAl4SEhFK5UJjLaFP6fKqra8imTVuJQOBLjhw5SuUSjh2LpG3u3v0jlWdn/8poMyIiiupKS0vJokVLiZHReGJlZUd27gwhra2thLRHI9bW9rSe9Mgo4cWLF+TnnxMY7UuKl5cPw/b27bvkm2++Jd7efmTdui/IrVs5DP3duwW0bl9HRoU547Jly8iBAwdISUkJ44HoLa/rjN2xZk0Ao25nzigU5hLSHiotWbJC5pj6+sbkzJl4WpcdHkmHqT1FOkw9caIjhN+8eavM8bW19Ul8/P9Tm87C1NbWVuLi8hZDFx4eQetVVFQSPb2xDH1SUjLVm5pOpnKJMzY3NxNHRxdGncjIk7ROWVkZ0dExYuilQ30TE3Oira1PnJzcqKykpJRxLEnZsGEztYmIiKJyaWd8+LCYeHjMIqNGGcrUl5Tk5BRqf+hQGKND1tbWJzo6RiQ5+Qq16c8wdUAmcLrD1dUVn3zyCZ49e4aVK1fihx9+YJsMOOyljbS0DGRnd4R+hw7tx6JF7zPqsOHzTWBnJw6hExISkZCQyDZBU1MzAgO3orW1FZAzESO93MI+H+lSVdWRXC+poqSkBB8fcQLCnTsFOHQojNpIs3HjZnoc9vEl5Offxu3bdxmyf//7P3Q7NjaOMaEGAOnpHa8FY8YYMXQAIBTm4t69+wxZYuIvdPvEiVh6XSRkZGTRbUNDcdg+f76AyrZu/Q51dU/ovoTw8AgUFhYBAOPDd+nfu3379xAKc9HW1kZl0ujo6ODtt98CANy7dx9btmxj3B8AaG1tZUzy9ScKccbk5GTMnj0bW7ZswYgRI+Dv7882GXDYSxsCgS9mzxbA29uPPnQhITsYubJsTE0n0O309EyGTpra2scoKrrHFgOsh4V9PtLlwoWOfF5JFVPTCdDWFicAXLuWSvVsHj+uw927hUAXzvjkiewDLlkzA4DKyiqGDgBaWjocSVVV9jrJc5oXL17QbfbXOwDQ0tLh8Orq6gAAc/OOd9zo6OMymVOSYmn5JtDeSSorix9taWfKyOj8HgGAtbUlrXfmTLxMRyHht98e4MGDh2xxn1GIM7q7uyMlJQVFRUVYunQphEIh20RhXLuWhsjIkwAAAwN9uLg4s00o0jers8kTCW1trz1P1i2SBwcAVFS6vpWdjQYS55R3ftKO251enpN3dkwJ8vTy2ukNamriZRfpa9TaKns8aaTvoXRHJA/JuffX+UJRzlhcXIxPP/0UU6dOxfLly+X2kIpE+nw6m+VF+yKvBA8PN4ZOGj09PVhZiXvt/qSiopJ2CNIJ+Wx0dXXp8eU5wFCnpKSEbm/f/j3mzVvQZfHy8kFTUzOjjZ5QUlJKt+3t7Rg6aSZMGA8Li0kAa+TtKwpxxrq6OtTX18PPzw+xsbHYsGED20RhjB6th4ULF9D9rsKRmppa3Lwp/mZz7tw/Yd482ZxVDQ11hIaG0F63P2/ey5cvkZx8BQAwdaoNvLzeY5sAAAIDN9IF+v7syQcL6fdMZ2cnZGRkITU1nVHS0zPB4/GQlpbR5SsDG2dnJ/qtbGlpGQoKxOG8n58vpk5lJn2gPWFg797ddL8/r6dCnNHX1xc5OTlYt24dLl26hF27drFNBhxra2sEBX3DKMHB3+HmzUz67lFYWESdrTO++y6YbsfERCIy8ihWrFiGOXNm4csvA5CTcx0ffOBHbfrz5gFAcPDf6Gh3+PABrFixjGYy8fkm2L79WwQEdKyn9mdnMFjk5d1GcrI4TdHbW4CLF8XrhZI1SlPTCYiOPo6YmEhcvXpJJstHHioqKoiPj8OlS4nIzk6jX8J8++1fqP7s2Th8+OEHeOONEdDS0sK8eV5ISkrEO+940nb6M9JQiDOeP38efD4fnp6eCA8Ph6Xl4H8SZGNjhaCgQEb5+uuvoKcnTg6vrX2MJUtWdHux09MzsXlzEN1fsGA+9u//EWfOxGLHjmDw+XzU1NTi4UP5CRB9JT//Dvbs2Qu0f7K2f/+PqKx8BJGoFnfvChEYuBHoZAJmOLF27XqUl/8OAHBymo6oqGMoKbkHkagWeXk3IBDMBQCoqKj26LeOHTsW774rnnXl801oMsDlyymIjo4FABgZGSIs7F+ori5DRUUxYmIiYW8/DS9fNtLJqf7sXBXijPr6+li1ahX279+PrKwsmJiIPzsZCohEIoSFHcP06a5dhqjSHD4cBoHAF5cvpzBmC9Ge9eHl5YPa2sdAJxMhfeX773di27a/4o8//mCrUFf3BJ9++jlu374D9PPDM5hUV9fA1dUTR44cpV/XsLl4MQleXj7d5g8DQFVVFaODzMrKptsBARsQEhKK58+fU5mEiopK+PuvpEtN/Xk9Bywdriuqq6sRGRmJlJQUXLhwAVu3bsXOnTvZZq9FT9LhRo4cCUfHjlQ0NiKRCPn5d+SOhqNH68Ha2goAUFBQiMeP69gmQPvsnY2NFXR0dFBe/juKix8BAITCbJibmyE//w7c3DrCHAcHe2hqiv+VPTU1ncrZTJo0EWPHjgEACIV5aGhoYJtAVVUVU6dOgbOzE3R1dVFRUYHY2Dg0NTXDxsYKenp6aGlpQWbmdVrHxcUZqqqqePr0qcw6I4/HownVDx48REUF84/D+HwTmJmJ/33h1i0hfXjd3FygrKyMuronuHu3gFFHR0eHvovdv/8bY/0UAMaNGwdT0/EAgJs3c2Q6N7QveTg4TIOjo0P7h+AEV6+mMtYoJUycaA5j47EAgMzM62hpaaE6Pp8PV9eZePSohLHGLEFDQx3Tptlhxgzxe+WDBw9x9mw8WlpaYG8/DVpamnj+/AVu3coB2kNbV9eZAICqqmrcv/8bq8WuUYgzxsfHw8/PDwYGBli0aBF27dqFUaNGsc1ei54440AxZowR9u3bg59/TkBUVDRbjYULfRERIV6QP3r0ODZs2Mw24eBQTJjq7u6OvLw83LlzB7a2tggLk585MhwwMjLEjRsZeO+9OThw4B/YufN7TJtmByUlJZibm2Hbtq0ICzsItH8SdvDgEXYTHByAopzx0aNHWLZsGQwNDfHZZ5+hrk5+yDccqK6uQUREFN3/4ovPce1aEurrayAUZmPLlk10WSEo6C80ZYuDg41CwtSUlBTk5ubSfUNDQyxdupRh87ooMkwFgHXr1iAoKBA6OjpsFcrKyrB79z9w9OhxtoqDgzLozigSieDk5IR795i5mqWlpT3+kloeinZGtE/eTJ/uCAuLiTAxMYaKigoSEy8gNzePbcrBIcOgO+Pz58/R0NCAY8eOoampCcrKyrC3t4ejo2OXqWfdMRSckYOjLwy6Mw4UnDNyDHd6NYHTXUa7IpC34M3BMZzolTPGxZ1hixRKXp7sh7EcHMONXoWpALBq1ceYN8+r079lHAxaWlqQkZGJ/fsPDsnRmoPjdei1M3JwcPQvvQpTOTg4+h/OGTk4hgicM3JwDBE4Z+TgGCJwzsjBMUTgnJGDY4jwXwq5iphzXBYFAAAAAElFTkSuQmCC" alt="BigHammer.ai" width="172" height="40"></a>
+    <p class="event-chip"><strong>Free live masterclass</strong> &nbsp;Thu 22 Oct, 11:00 AM BST</p>
+  </div>
+</header>
+<p class="preview-bar" id="preview-bar" hidden>Preview mode: this sign-up was not sent to WebinarGeek, n8n or WhatsApp.</p>
+
+<main>
+<section class="ty-hero" aria-labelledby="ty-title">
+  <div class="container">
+    <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="4,13 10,19 20,6" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="square" pathLength="1"/></svg></span>
+    <h1 id="ty-title"><span id="ty-name">You're</span> registered!</h1>
+    <p class="lead">Your seat is saved for the live masterclass with <b>Srinath Reddy</b> and <b>Richard Lawrence</b>. Take the four steps below so you don't miss it.</p>
+    <div class="when">
+      <p class="when-date">Thursday 22 October 2026<span class="nw"><span class="dot"> &middot; </span>11:00 AM BST</span></p>
+      <p class="when-local" id="when-local" hidden></p>
+    </div>
+    <div class="hero-meta">
+      <p class="pill" id="sent-pill" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><polyline points="3,6 12,13 21,6"/></svg><span>Confirmation sent to <b id="sent-to"></b></span></p>
+      <p class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg><span>Bookmark this page. You'll need it later.</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="steps" aria-labelledby="steps-title">
+  <div class="container">
+    <h2 id="steps-title">Take 4 steps</h2>
+    <p class="sub">Two minutes now saves you hunting for the link on the day.</p>
+    <div class="step-grid">
+
+      <article class="step key">
+        <p class="step-n"><b>1</b><span>Step 1</span></p>
+        <h3>Secure your direct masterclass entry</h3>
+        <p>Save this link to your calendar. This is where you will join Srinath Reddy and Richard Lawrence live.</p>
+        <p class="note" id="watch-note" hidden>Your personal join link is in your confirmation email. Check your inbox (and spam folder) for it.</p>
+        <div class="actions">
+          <a class="btn btn-primary" id="watch-link" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></svg>Access webinar seat</a>
+          <div class="cal-row"><span class="lbl">Add to calendar</span><a class="btn-cal" id="cal-google" href="#" target="_blank" rel="noopener">Google Calendar</a><a class="btn-cal" id="cal-ics" href="#" download="bighammer-masterclass.ics">Apple or Outlook (.ics)</a></div>
+        </div>
+      </article>
+
+      <article class="step" id="whatsapp-step">
+        <p class="step-n"><b>2</b><span>Step 2</span></p>
+        <h3>Message us on WhatsApp</h3>
+        <p>Send us a message and we'll reply with your join link, reminders and the session resources. This is optional. Reply STOP at any time to opt out of WhatsApp messages.</p>
+        <div class="actions">
+          <a class="btn btn-wa" id="whatsapp-link" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>Message us on WhatsApp</a>
+        </div>
+      </article>
+
+      <article class="step demo">
+        <p class="step-n"><b>3</b><span>Step 3</span></p>
+        <h3>Book a 1:1 demo</h3>
+        <p>Ready to modernise your data engineering and cut Databricks costs without expanding headcount? Schedule a direct demo with our team to see BigHammer in action.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://bighammer.ai/book-demo/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="3" y="5" width="18" height="16"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Book a demo</a>
+        </div>
+      </article>
+
+      <article class="step">
+        <p class="step-n"><b>4</b><span>Step 4</span></p>
+        <h3>Email confirmation sent</h3>
+        <p>Check your email for your seat confirmation and session details. It comes from BigHammer.ai, so check your spam folder if you cannot see it. You can unsubscribe from any email.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="see-you" aria-labelledby="see-you-title">
+  <div class="container">
+    <h2 id="see-you-title">See you at the <span>masterclass!</span></h2>
+    <p>We've also sent a confirmation to your email. Check your spam folder if you don't see it in the next 2 minutes.</p>
+    <a class="back" href="index.html">Back to the masterclass page</a>
+  </div>
+</section>
+<div class="color-bar" aria-hidden="true"><i style="background:var(--pink)"></i><i style="background:var(--yellow)"></i><i style="background:var(--green)"></i><i style="background:var(--purple)"></i></div>
+</main>
+
+<script>
+(function () {
+  /* WhatsApp Business number, international format, digits only (same as the live thank-you page). Empty hides step 2. */
+  var WHATSAPP_NUMBER = '13323014254';
+  /* GHL matches an inbound WhatsApp message to the registrant's own number, so the email is only added when there is no phone */
+  var INCLUDE_EMAIL_REFERENCE = true;
+  var START = '20261022T100000Z', END = '20261022T110000Z', TARGET = Date.UTC(2026, 9, 22, 10, 0, 0);
+
+  function $(id) { return document.getElementById(id); }
+  /* the page asks people to bookmark it, so prefer the copy that survives a browser restart */
+  function readStored(key) {
+    var stores = [];
+    try { stores.push(localStorage); } catch (e) {}
+    try { stores.push(sessionStorage); } catch (e) {}
+    for (var i = 0; i < stores.length; i++) {
+      try { var raw = stores[i].getItem(key); if (raw) { return JSON.parse(raw); } } catch (e) { /* blocked or unparsable */ }
+    }
+    return null;
+  }
+  function waHref(reg) {
+    var opening = 'Hi Srinath, I have registered for the BigHammer UK masterclass on Thursday 22 October 2026, 11:00 AM BST.';
+    var ask = ' Please send me my join link and resources.';
+    var ref = (INCLUDE_EMAIL_REFERENCE && reg && reg.email && !reg.phone) ? ' (' + reg.email + ')' : '';
+    return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(opening + ref + ask);
+  }
+
+  var reg = readStored('registrationData');
+  var bc = readStored('broadcastData');
+  var preview = /[?&]preview=1/.test(window.location.search) || (reg && reg.preview);
+  if (preview) { $('preview-bar').hidden = false; }
+
+  if (reg && reg.name) {
+    var first = String(reg.name).trim().split(/\s+/)[0];
+    if (first) { $('ty-name').textContent = first + ", you're"; }
+  }
+  if (reg && reg.email) { $('sent-to').textContent = reg.email; $('sent-pill').hidden = false; }
+
+  /* join link: the personal WebinarGeek link, else the broadcast link; otherwise point to the email */
+  var join = (reg && reg.watchLink) || (bc && bc.broadcast_data && bc.broadcast_data.public_replay_link) || '';
+  if (join) { $('watch-link').href = join; }
+  else { $('watch-link').hidden = true; $('watch-note').hidden = false; }
+
+  if (WHATSAPP_NUMBER) { $('whatsapp-link').href = waHref(reg); } else { $('whatsapp-step').hidden = true; }
+
+  /* calendar */
+  var title = 'BigHammer.ai Live Masterclass: Cut your Databricks bill by up to 75% (UK)';
+  var details = 'Free 60-minute live session (45 minutes presentation, 15 minutes live Q&A) with Srinath Reddy and Richard Lawrence.' + (join ? ' Join: ' + join : ' Your join link is in your confirmation email.');
+  $('cal-google').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(title) + '&dates=' + START + '/' + END + '&details=' + encodeURIComponent(details);
+  var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//BigHammer.ai//Masterclass//EN', 'BEGIN:VEVENT', 'UID:masterclass-uk-20261022@bighammer.ai', 'DTSTAMP:20260101T000000Z',
+    'DTSTART:' + START, 'DTEND:' + END, 'SUMMARY:' + title, 'DESCRIPTION:' + details, join ? 'URL:' + join : '', 'END:VEVENT', 'END:VCALENDAR'].filter(Boolean).join('\r\n');
+  $('cal-ics').href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+
+  /* visitor's own time when it differs from UK time */
+  try {
+    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    if (tz && tz !== 'Europe/London') {
+      var l = new Intl.DateTimeFormat([], { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' }).format(new Date(TARGET));
+      $('when-local').textContent = 'Your time: ' + l; $('when-local').hidden = false;
+    }
+  } catch (e) { /* UK time only */ }
+})();
+</script>
+
+<div class="consent-bar" id="consent-bar" role="region" aria-label="Cookie consent" hidden>
+  <p>We use optional cookies for analytics and advertising measurement. They stay off unless you accept. Read our <a href="https://bighammer.ai/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a>.</p>
+  <button type="button" class="cb" id="consent-no">Reject</button>
+  <button type="button" class="cb cb-ok" id="consent-yes">Accept</button>
+</div>
+<script>
+(function () {
+  /* optional tags: stay inert until an ID is supplied AND the visitor accepts */
+  var KEY = 'bh_uk_consent';
+  var GA4_ID = '', GA4_CONVERSION_EVENT = 'generate_lead', LINKEDIN_PARTNER_ID = '', METRICOOL_TRACKER = '';
+  var bar = document.getElementById('consent-bar');
+  function get() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function set(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+  function add(src) { var s = document.createElement('script'); s.async = true; s.src = src; document.head.appendChild(s); }
+  function load() {
+    if (window.__bhTags) { return; } window.__bhTags = true;
+    window.dataLayer = window.dataLayer || [];
+    if (GA4_ID) {
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      add('https://www.googletagmanager.com/gtag/js?id=' + GA4_ID);
+      window.gtag('js', new Date()); window.gtag('config', GA4_ID);
+      if (GA4_CONVERSION_EVENT) { window.gtag('event', GA4_CONVERSION_EVENT, { campaign: 'web4-uk-22oct', region: 'UK' }); }
+    }
+    if (LINKEDIN_PARTNER_ID) { window._linkedin_partner_id = LINKEDIN_PARTNER_ID; window._linkedin_data_partner_ids = [LINKEDIN_PARTNER_ID]; add('https://snap.licdn.com/li.lms-analytics/insight.min.js'); }
+    if (METRICOOL_TRACKER) { add('https://tracker.metricool.com/resources/be.js'); }
+  }
+  var c = get();
+  if (c === 'yes') { load(); } else if (c !== 'no' && bar) { bar.hidden = false; }
+  document.getElementById('consent-yes').addEventListener('click', function () { set('yes'); bar.hidden = true; load(); });
+  document.getElementById('consent-no').addEventListener('click', function () { set('no'); bar.hidden = true; });
+})();
+</script>
+</body>
+</html>

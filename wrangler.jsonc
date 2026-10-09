@@ -1,0 +1,9 @@
+{
+  // Static site: serves index.html and thank-you.html from the repo root.
+  // Everything else (docs, simulation, workers, this config) is excluded by .assetsignore.
+  "name": "bighammer-webinar-uk",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./"
+  }
+}
