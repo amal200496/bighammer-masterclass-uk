@@ -1,0 +1,13 @@
+# Copy to .dev.vars for `npm run dev`. Never commit .dev.vars.
+GHL_PRIVATE_TOKEN=pit-REPLACE_ME
+WEBINARGEEK_WEBHOOK_SECRET=REPLACE_ME
+
+# Webinar nurture (beehiiv). The webhook secret is the whsec_... value on the
+# endpoint's page in beehiiv. The key is our own long random string, sent as ?key=.
+BEEHIIV_API_KEY=REPLACE_ME
+BEEHIIV_WEBHOOK_SECRET=whsec_REPLACE_ME
+NURTURE_WEBHOOK_KEY=REPLACE_ME
+
+# For deploying and reading logs only. Load it into the shell for wrangler;
+# never upload it as a Worker secret.
+CLOUDFLARE_API_TOKEN=REPLACE_ME

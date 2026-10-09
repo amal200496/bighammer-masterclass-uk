@@ -1,0 +1,83 @@
+[1mdiff --git a/README.md b/README.md[m
+[1mindex 791e30d..70b0286 100644[m
+[1m--- a/README.md[m
+[1m+++ b/README.md[m
+[36m@@ -7,13 +7,18 @@[m [mFiles: `index.html`, `thank-you.html`, `og-image.png`, `wrangler.jsonc`, `.asset[m
+ Thursday 22 October 2026, 11:00 AM BST (10:00 UTC, 6:00 AM New York, 3:30 PM India). 60 minutes: 45 presentation + 15 live Q&A.[m
+ [m
+ ## Needed before going live (search `index.html` / `thank-you.html`)[m
+[31m-1. `BROADCAST_ID` in `index.html` is empty on purpose. Paste the UK WebinarGeek broadcast ID. While it is empty (or equals the US ID 6841508) live sign-ups are blocked. There is no "upcoming broadcast" lookup on this page.[m
+[32m+[m[32m1. `BROADCAST_ID` in `index.html` is the UK WebinarGeek broadcast, `6942090`. There is no "upcoming broadcast" lookup on this page. The same ID is in `workers/automations/wrangler.jsonc` (`BROADCAST_SESSIONS`); redeploy the Worker so it takes effect.[m
+ 2. `LIVE_HOSTS` is `uk.webinar.bighammerai.com`. Change if a different hostname is chosen (also update og/canonical/JSON-LD URLs). On any other host sign-ups are simulated.[m
+ 3. Tracking IDs (inert until set and the visitor accepts the cookie banner): `GA4_ID`, `LINKEDIN_PARTNER_ID`, `METRICOOL_TRACKER` in both files. GA4 conversion fires on `thank-you.html` (`generate_lead`).[m
+ 4. `WHATSAPP_NUMBER` in `thank-you.html` is still the US number. Confirm it can message UK numbers.[m
+ 5. Privacy/Terms links point at bighammer.ai/privacy-policy/ and /terms/. Legal to confirm wording and sender identity.[m
+[31m-6. GHL: add custom field `region` and workflow for tags `uk-route`, `web4-uk-22oct`. The page sends `region`, `campaign`, `tags` to n8n and a hidden `region` field to the form. Form id stays `registrationForm`.[m
+[32m+[m[32m6. GHL: nothing new to set up. The form id stays `registrationForm` and the form sends the same fields as the US page, so the existing workflows run as usual. No UK-specific tags or fields are added; filter UK registrants by webinar date. The n8n payload is the US one plus UTM fields.[m
+ 7. UTM: `calendar-uk`, `email-uk`, `linkedin-uk`, `newsletter-uk`, `social-uk` as `utm_source`; default `utm_campaign` is `web4-uk-22oct`.[m
+ [m
+[32m+[m[32m## Integrations (same as the US page)[m
+[32m+[m[32mOn submit, on `LIVE_HOSTS` only: n8n webhook, WebinarGeek registration through `broadcast.growthclub.org`, then one GoHighLevel external-tracking form submit (form id `registrationForm`, same tracking id as the US page) that carries name, phone, `readable_webinar_date`, `readable_webinar_time` and `watch_link_webinargeek`, and drives the WhatsApp workflow. `thank-you.html` shows the join link, the WhatsApp link and calendar files.[m
+[32m+[m
+[32m+[m[32m`workers/automations/` is the shared Cloudflare Worker (`bighammer-automations`) that turns WebinarGeek webhooks into GHL fields and tags, plus the beehiiv nurture routes. It is one deployed Worker for every landing page; this copy adds `BROADCAST_SESSIONS` so UK registrants keep UK date and time. Deploy it from here (`npm install && npm run deploy`); secrets are already on the deployed Worker and `.dev.vars` is not in this repo. It is not part of the static site (`.assetsignore`).[m
+[32m+[m
+ ## Changes vs the US page[m
+ Date/time/duration everywhere (meta, JSON-LD, hero, agenda, marquee, countdown, calendar files), US-session banner, UK default phone country, WhatsApp opt-out text, privacy notice, consent banner, hardcoded broadcast and expired-session guard, UK spelling. No gift-card offer, "up to 75%" wording only.[m
+[1mdiff --git a/index.html b/index.html[m
+[1mindex 097d4c6..fbf6c80 100644[m
+[1m--- a/index.html[m
+[1m+++ b/index.html[m
+[36m@@ -1038,7 +1038,6 @@[m [ma:focus-visible,button:focus-visible{outline-offset:3px}[m
+ [m
+           <!-- Filled just before the tracked submit. Off-screen, not type="hidden", because the GoHighLevel tracker skips hidden inputs. -->[m
+           <div class="offscreen-fields" aria-hidden="true">[m
+[31m-            <input type="text" name="region" id="ghlRegion" value="UK" tabindex="-1" readonly autocomplete="off">[m
+             <input type="text" name="first_name" id="ghlFirstName" tabindex="-1" readonly autocomplete="off">[m
+             <input type="text" name="last_name" id="ghlLastName" tabindex="-1" readonly autocomplete="off">[m
+             <input type="text" name="phone" id="ghlPhone" tabindex="-1" readonly autocomplete="off">[m
+[36m@@ -1709,15 +1708,12 @@[m [ma:focus-visible,button:focus-visible{outline-offset:3px}[m
+ [m
+   var BACKEND_URL = 'https://broadcast.growthclub.org';[m
+   var CLIENT_ID = 'bighammer';[m
+[31m-  /* UK session: fixed, never looked up. Paste the UK WebinarGeek broadcast ID below (digits only).[m
+[31m-     Until it is set, live sign-ups are blocked so nobody can be registered on the US session by mistake. */[m
+[31m-  var BROADCAST_ID = '';[m
+[32m+[m[32m  /* UK session (22 Oct 2026): fixed WebinarGeek broadcast ID, never looked up.[m
+[32m+[m[32m     If it is empty or equals the US ID, live sign-ups are blocked so nobody is registered on the US session by mistake. */[m
+[32m+[m[32m  var BROADCAST_ID = '6942090';[m
+   var US_BROADCAST_ID = '6841508';[m
+   var SESSION_START = '2026-10-22T10:00:00Z';[m
+   var SESSION_TITLE = 'Cut your Databricks bill by up to 75%: Live Masterclass (UK)';[m
+[31m-  var REGION = 'UK';[m
+[31m-  var CAMPAIGN = 'web4-uk-22oct';[m
+[31m-  var GHL_TAGS = ['uk-route', 'web4-uk-22oct'];[m
+   var N8N_WEBHOOK_URL = 'https://n8n.bighammerops.com/webhook/7f48ee24-ccae-4b03-afb0-c1fed9a5e2d8';[m
+   var GHL_TRACKING_ID = 'tk_1766461a858840bab3b002924858c2ea';[m
+   var WEBINAR_TZ = 'Europe/London';[m
+[36m@@ -1732,7 +1728,8 @@[m [ma:focus-visible,button:focus-visible{outline-offset:3px}[m
+ [m
+   function formatWebinarDate(unix) {[m
+     if (!unix) { return ''; }[m
+[31m-    return new Date(unix * 1000).toLocaleDateString('en-GB', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: WEBINAR_TZ });[m
+[32m+[m[32m    /* some browsers put a comma after the weekday in en-GB; strip it so GHL always gets "Thursday 22 October 2026" (same as the Worker) */[m
+[32m+[m[32m    return new Date(unix * 1000).toLocaleDateString('en-GB', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: WEBINAR_TZ }).replace(/,/g, '');[m
+   }[m
+   function formatWebinarTime(unix) {[m
+     if (!unix) { return ''; }[m
+[36m@@ -1888,7 +1885,7 @@[m [ma:focus-visible,button:focus-visible{outline-offset:3px}[m
+         name: name, email: email, phone: phone, company: '', role: '',[m
+         clientId: CLIENT_ID, submittedFromUrl: window.location.href, broadcastId: broadcastId,[m
+         webinarTitle: bd.webinar_title || '', webinarDate: bd.readable_date || '',[m
+[31m-        source: 'Landing Page Registration', region: REGION, campaign: CAMPAIGN, tags: GHL_TAGS[m
+[32m+[m[32m        source: 'Landing Page Registration'[m
+       };[m
+       Object.keys(utm).forEach(function (k) { lead[k] = utm[k]; });[m
+       var n8nDone = fetch(N8N_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(lead) })[m
+[36m@@ -1915,7 +1912,6 @@[m [ma:focus-visible,button:focus-visible{outline-offset:3px}[m
+       $('ghlWebinarDate').value = formatWebinarDate(bd.date || null);[m
+       $('ghlWebinarTime').value = formatWebinarTime(bd.date || null);[m
+       $('ghlWatchLink').value = watchLink;[m
+[31m-      $('ghlRegion').value = REGION;[m
+       if (typeof form.requestSubmit === 'function') { form.requestSubmit(); }[m
+       else { form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true })); }[m
+ [m

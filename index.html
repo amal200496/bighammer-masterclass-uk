@@ -1038,7 +1038,6 @@ a:focus-visible,button:focus-visible{outline-offset:3px}
 
           <!-- Filled just before the tracked submit. Off-screen, not type="hidden", because the GoHighLevel tracker skips hidden inputs. -->
           <div class="offscreen-fields" aria-hidden="true">
-            <input type="text" name="region" id="ghlRegion" value="UK" tabindex="-1" readonly autocomplete="off">
             <input type="text" name="first_name" id="ghlFirstName" tabindex="-1" readonly autocomplete="off">
             <input type="text" name="last_name" id="ghlLastName" tabindex="-1" readonly autocomplete="off">
             <input type="text" name="phone" id="ghlPhone" tabindex="-1" readonly autocomplete="off">
@@ -1709,15 +1708,12 @@ a:focus-visible,button:focus-visible{outline-offset:3px}
 
   var BACKEND_URL = 'https://broadcast.growthclub.org';
   var CLIENT_ID = 'bighammer';
-  /* UK session: fixed, never looked up. Paste the UK WebinarGeek broadcast ID below (digits only).
-     Until it is set, live sign-ups are blocked so nobody can be registered on the US session by mistake. */
-  var BROADCAST_ID = '';
+  /* UK session (22 Oct 2026): fixed WebinarGeek broadcast ID, never looked up.
+     If it is empty or equals the US ID, live sign-ups are blocked so nobody is registered on the US session by mistake. */
+  var BROADCAST_ID = '6942090';
   var US_BROADCAST_ID = '6841508';
   var SESSION_START = '2026-10-22T10:00:00Z';
   var SESSION_TITLE = 'Cut your Databricks bill by up to 75%: Live Masterclass (UK)';
-  var REGION = 'UK';
-  var CAMPAIGN = 'web4-uk-22oct';
-  var GHL_TAGS = ['uk-route', 'web4-uk-22oct'];
   var N8N_WEBHOOK_URL = 'https://n8n.bighammerops.com/webhook/7f48ee24-ccae-4b03-afb0-c1fed9a5e2d8';
   var GHL_TRACKING_ID = 'tk_1766461a858840bab3b002924858c2ea';
   var WEBINAR_TZ = 'Europe/London';
@@ -1732,7 +1728,8 @@ a:focus-visible,button:focus-visible{outline-offset:3px}
 
   function formatWebinarDate(unix) {
     if (!unix) { return ''; }
-    return new Date(unix * 1000).toLocaleDateString('en-GB', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: WEBINAR_TZ });
+    /* some browsers put a comma after the weekday in en-GB; strip it so GHL always gets "Thursday 22 October 2026" (same as the Worker) */
+    return new Date(unix * 1000).toLocaleDateString('en-GB', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: WEBINAR_TZ }).replace(/,/g, '');
   }
   function formatWebinarTime(unix) {
     if (!unix) { return ''; }
@@ -1888,7 +1885,7 @@ a:focus-visible,button:focus-visible{outline-offset:3px}
         name: name, email: email, phone: phone, company: '', role: '',
         clientId: CLIENT_ID, submittedFromUrl: window.location.href, broadcastId: broadcastId,
         webinarTitle: bd.webinar_title || '', webinarDate: bd.readable_date || '',
-        source: 'Landing Page Registration', region: REGION, campaign: CAMPAIGN, tags: GHL_TAGS
+        source: 'Landing Page Registration'
       };
       Object.keys(utm).forEach(function (k) { lead[k] = utm[k]; });
       var n8nDone = fetch(N8N_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(lead) })
@@ -1915,7 +1912,6 @@ a:focus-visible,button:focus-visible{outline-offset:3px}
       $('ghlWebinarDate').value = formatWebinarDate(bd.date || null);
       $('ghlWebinarTime').value = formatWebinarTime(bd.date || null);
       $('ghlWatchLink').value = watchLink;
-      $('ghlRegion').value = REGION;
       if (typeof form.requestSubmit === 'function') { form.requestSubmit(); }
       else { form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true })); }
 

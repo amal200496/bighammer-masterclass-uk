@@ -1,0 +1,33 @@
+{
+  // One Worker hosts every automation; each gets its own route in src/index.js.
+  "name": "bighammer-automations",
+  "main": "src/index.js",
+  // BigHammer's Cloudflare account. Pinned so a deploy can't land in another account.
+  "account_id": "043906838234062d592c23573a9f152e",
+  "compatibility_date": "2026-09-01",
+  "observability": { "enabled": true },
+
+  // Nightly beehiiv → GHL engagement sync, 02:00 UTC.
+  "triggers": { "crons": ["0 2 * * *"] },
+
+  // Not secret, so they live here. Secrets are set with `wrangler secret put`
+  // (see README.md): GHL_PRIVATE_TOKEN, WEBINARGEEK_WEBHOOK_SECRET,
+  // BEEHIIV_API_KEY, BEEHIIV_WEBHOOK_SECRET, NURTURE_WEBHOOK_KEY.
+  "vars": {
+    "GHL_LOCATION_ID": "f4O7ltHrHV35aUOr0DeD",
+    // beehiiv publication (pub_...) and the "Webinar Nurture 2026 (24)" automation (aut_...).
+    "BEEHIIV_PUBLICATION_ID": "pub_472bc3b5-e350-4802-9e74-b28a972048f6",
+    "BEEHIIV_AUTOMATION_ID": "aut_3308616e-dc11-4fb1-a148-605e4da98ab7",
+    // Timezone the readable_webinar_* fields are written in. Must match index.html.
+    "WEBINAR_TIMEZONE": "America/New_York",
+    // Sessions with their own landing page, keyed by WebinarGeek broadcast id. A broadcast
+    // listed here is written in its own timezone and locale.
+    // 6942090 = UK session, 22 Oct 2026. Same id as BROADCAST_ID in the UK index.html.
+    "BROADCAST_SESSIONS": {
+      "6942090": {
+        "timezone": "Europe/London",
+        "locale": "en-GB"
+      }
+    }
+  }
+}
