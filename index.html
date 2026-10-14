@@ -1044,6 +1044,7 @@ a:focus-visible,button:focus-visible{outline-offset:3px}
             <input type="text" name="phone_number" id="ghlPhoneNumber" tabindex="-1" readonly autocomplete="off">
             <input type="text" name="readable_webinar_date" id="ghlWebinarDate" tabindex="-1" readonly autocomplete="off">
             <input type="text" name="readable_webinar_time" id="ghlWebinarTime" tabindex="-1" readonly autocomplete="off">
+            <input type="text" name="webinar_broadcast_date" id="ghlBroadcastDate" tabindex="-1" readonly autocomplete="off">
             <input type="text" name="watch_link_webinargeek" id="ghlWatchLink" tabindex="-1" readonly autocomplete="off">
           </div>
 
@@ -1717,6 +1718,7 @@ a:focus-visible,button:focus-visible{outline-offset:3px}
   var N8N_WEBHOOK_URL = 'https://n8n.bighammerops.com/webhook/7f48ee24-ccae-4b03-afb0-c1fed9a5e2d8';
   var GHL_TRACKING_ID = 'tk_1766461a858840bab3b002924858c2ea';
   var WEBINAR_TZ = 'Europe/London';
+  var GHL_TZ = 'Asia/Kolkata'; // the GHL location's timezone
   var THANK_YOU_URL = 'thank-you.html';
 
   if (IS_LIVE) {
@@ -1738,6 +1740,15 @@ a:focus-visible,button:focus-visible{outline-offset:3px}
     var parts = new Intl.DateTimeFormat('en-GB', { timeZoneName: 'short', timeZone: WEBINAR_TZ }).formatToParts(d);
     var zone = (parts.filter(function (x) { return x.type === 'timeZoneName'; })[0] || {}).value || '';
     return (clock + ' ' + zone).trim();
+  }
+  /* "2026-10-15 21:30:00" for the GHL workflow's wait step. It is a text field with no timezone, so GHL reads it in the
+     location's timezone (IST): write it in GHL_TZ, not WEBINAR_TZ. The automations Worker writes the same value. */
+  function formatWebinarBroadcastDate(unix) {
+    if (!unix) { return ''; }
+    var p = {};
+    new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23', timeZone: GHL_TZ })
+      .formatToParts(new Date(unix * 1000)).forEach(function (x) { p[x.type] = x.value; });
+    return p.year + '-' + p.month + '-' + p.day + ' ' + p.hour + ':' + p.minute + ':' + p.second;
   }
   /* splits on the first space, so a compound first name lands in last_name (same as the live page) */
   function splitName(full) {
@@ -1911,6 +1922,7 @@ a:focus-visible,button:focus-visible{outline-offset:3px}
       $('ghlPhoneNumber').value = phone;
       $('ghlWebinarDate').value = formatWebinarDate(bd.date || null);
       $('ghlWebinarTime').value = formatWebinarTime(bd.date || null);
+      $('ghlBroadcastDate').value = formatWebinarBroadcastDate(bd.date || null);
       $('ghlWatchLink').value = watchLink;
       if (typeof form.requestSubmit === 'function') { form.requestSubmit(); }
       else { form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true })); }
