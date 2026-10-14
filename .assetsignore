@@ -8,3 +8,4 @@ workers
 .gitignore
 node_modules
 *.md
+.wrangler
